@@ -3,6 +3,7 @@ const button = document.querySelector("#searchButton");
 const result = document.querySelector("#results");
 let pokemonId;
 
+//add event listener to the search button
 button.addEventListener("click", (e) => {
   if (input.value) {
     if (e.target.id === "searchButton") {
@@ -20,6 +21,7 @@ input.addEventListener("keyup", (e) => {
   }
 });
 
+//get data of certain pokemon
 const searchPokemon = async (pokemonId) => {
     await axios
     .get(`http://pokeapi.co/api/v2/pokemon/${pokemonId}`)
@@ -35,7 +37,7 @@ const searchPokemon = async (pokemonId) => {
     });
   };
   
-let allTypes;
+//make new pokemon based on the data  
 const makePok = (data) => {
   let pokRapper = document.createElement("div");
   pokRapper.classList.add("pokRapper");
@@ -56,24 +58,27 @@ const makePok = (data) => {
   onmouseout="this.src='${data.sprites.front_default}';"/></div>`;
   }
   
+  
   document.addEventListener("click", (e) => {
+    //add event listener to the all types
     if (e.target.id === "pok") {
       let parent = e.target.parentElement
       openList(e.target.innerText, parent)
   }
+  //add event listener to the pokemons the shares the same type
   if (e.target.id === "brotherName") {
     searchPokemon(e.target.innerText);
 }
   })
 
+  //get the all pokemon names that shares the same data the user clicked
   const openList = async (pokemonName, node) => {
     console.log(pokemonName);
-      await axios
-      .get(`http://pokeapi.co/api/v2/type/${pokemonName}`)
-      .then(response => {
-        console.log(response) 
-        showBrothers(response.data, node)
-      })
+      await fetch
+      (`http://pokeapi.co/api/v2/type/${pokemonName}`)
+      .then(res => res.json())
+      .then(data => 
+        showBrothers(data, node)) 
       .catch(error => {
         console.log(error.message);
         document.getElementById("error").innerHTML = "<p>Type not found</p>"
@@ -83,8 +88,7 @@ const makePok = (data) => {
       });
   }
     
-
-
+//show all the pokemons that have the same data
 const showBrothers = (data, node) => {
   console.log(data.pokemon)
   let brothersRapper = document.createElement("div");
