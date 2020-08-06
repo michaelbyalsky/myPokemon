@@ -1,0 +1,177 @@
+body {
+    font-family: "Rubik", sans-serif;
+  background-color: #128cfc;
+  margin-top: 5%;
+  }
+  
+  @media (min-width: 1000px) {
+    body {
+      font-family: "Rubik", sans-serif;
+    background-color: #128cfc;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+      transition: all 0.3s;
+    }
+  }
+  
+  @media (max-width: 1000px) {
+    body {
+      margin: 0%;
+      transition: all 0.3s;
+    }
+  }
+  
+  @media (max-width: 550px) {
+    body {
+      font-size: small;
+      transition: all 0.3s;
+    }
+  }
+  
+  h1 {
+    padding: 5px 20px;
+    margin: 10px;
+    color: #0b5aa2;
+    font-weight: bold;
+    font-size: 25px;
+    display: grid;
+  }
+  
+  #wrapper {
+    width: auto;
+    border: 1px solid black;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    display: grid;
+    place-items: center;
+    background-color: whitesmoke;
+    border-top: 10px solid blue;
+  }
+  
+  #controlSection {
+    display: grid;
+    grid-template-columns: repeat(3, 0.7fr);
+  }
+  
+  #sortSection {
+    margin-top: 1.3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 0.6fr) 0.7fr;
+  }
+  
+
+  #search {
+    border: 2px solid skyblue;
+    font-size: 1em;
+    padding: 0.25em 0.5em 0.3125em;
+    color: black;
+    border-radius: 0.25em;
+    transition: all 0.1s;
+  }
+  
+  #searchButton {
+    outline: none;
+    color: black;
+    border-color: skyblue;
+    font-size: 1em;
+    padding: 0.25em 0.5em 0.3125em;
+    color: black;
+    border-radius: 0.25em;
+    transition: all 0.1s;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  #results {
+    padding: 10px;
+    margin: 10px;
+    display: grid;
+    grid-gap: 10px;
+  }
+  
+  .pokRapper {
+    padding: 10px;
+    padding-right: 0px;
+    display: grid;
+    grid-template-rows: repeat(6, 0.1fr);
+    border: 1px solid transparent;
+    color: rgb(4, 5, 7);
+    font-weight: bolder;
+    align-items: center;
+    border-radius: 4%;
+  }
+  
+  .delBtn {
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+    transform: scale(1.1);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  
+  .delBtn:hover {
+    outline: none;
+    color: black;
+    border-color: rgb(25, 146, 25);
+    font-size: 1em;
+    color: black;
+    border-radius: 0.25em;
+    transition: all 0.1s;
+  }
+  
+
+  #textInput:focus,
+  #search:focus {
+    outline: none;
+    color: black;
+    border-color: blue;
+  }
+  
+  #addButton:hover,
+ {
+    outline: none;
+    color: black;
+    border-color: blue;
+    font-size: 1em;
+    padding: 0.25em 0.5em 0.3125em;
+    color: black;
+    border-radius: 0.25em;
+    transition: all 0.1s;
+  }
+  
+  
+  
+  #deleteAll {
+    outline: none;
+    color: black;
+    border-color: rgb(233, 56, 56);
+    font-size: 1em;
+    padding: 0.25em 0.5em 0.3125em;
+    color: black;
+    border-radius: 0.25em;
+    transition: all 0.1s;
+    text-align: center;
+    align-items: center;
+    border-width: 0.2rem;
+  }
+  
+  #deleteAll:hover {
+    outline: none;
+    color: black;
+    border-color: rgb(255, 0, 13);
+    background-color: red;
+    transition: all 0.5s;
+    font-weight: bolder;
+    font-size: 1rem;
+  }
+  
+
+  #broNameCon {
+    display: grid;
+    grid-template-columns: auto;
+  }

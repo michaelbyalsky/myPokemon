@@ -6,10 +6,8 @@ let pokemonId;
 //add event listener to the search button
 button.addEventListener("click", (e) => {
   if (input.value) {
-    if (e.target.id === "searchButton") {
-      myPokemonId = input.value;
-      searchPokemon(myPokemonId);
-    }
+    myPokemonId = input.value;
+    searchPokemon(myPokemonId);
   }
 });
 
@@ -23,82 +21,84 @@ input.addEventListener("keyup", (e) => {
 
 //get data of certain pokemon
 const searchPokemon = async (pokemonId) => {
-    await axios
+  await axios
     .get(`http://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-    .then(response => { 
-      makePok(response.data)
+    .then((response) => {
+      makePok(response.data);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error.message);
-      document.getElementById("error").innerHTML = "<p>Pokemon not found</p>"
+      document.getElementById("error").innerHTML = "<p>Pokemon not found</p>";
       setTimeout(() => {
-        document.getElementById("error").innerHTML = '';
+        document.getElementById("error").innerHTML = "";
       }, 3000);
     });
-  };
-  
-//make new pokemon based on the data  
+};
+
+//make new pokemon based on the data
 const makePok = (data) => {
   let pokRapper = document.createElement("div");
   pokRapper.classList.add("pokRapper");
   result.appendChild(pokRapper);
-  console.log(data.types)
-  let types = data.types
+  console.log(data.types);
+  let types = data.types;
   let pokType = "";
-  types.forEach(i => {
-    console.log(i);
-    pokType += `<a id="pok" href="#">${i.type.name}  </a>`
+  types.forEach((i) => {
+    pokType += `<a id="pok" href="#">${i.type.name}  </a>`;
   });
   pokRapper.innerHTML = `<div>Pokemon Height: ${data.name}</div> 
   <div>Pokemon Name:  ${data.height}</div> 
   <div>Pokemon Height: ${data.weight}</div>
   <div class="types">types: ${pokType}</div> 
-  <div>Pokemon Image: <br> <img src="${data.sprites.front_default}"
+  <div id="imgWrapper">Pokemon Image: <br> <img id="pokImg" src="${data.sprites.front_default}"
   onmouseover="this.src='${data.sprites.back_default}';"
   onmouseout="this.src='${data.sprites.front_default}';"/></div>`;
-  }
-  
-  
-  document.addEventListener("click", (e) => {
-    //add event listener to the all types
-    if (e.target.id === "pok") {
-      let parent = e.target.parentElement
-      openList(e.target.innerText, parent)
+};
+
+document.addEventListener("click", (e) => {
+  //add event listener to the all types
+  if (e.target.id === "pok") {
+    let parent = e.target.parentElement;
+    openList(e.target.innerText, parent);
   }
   //add event listener to the pokemons the shares the same type
   if (e.target.id === "brotherName") {
     searchPokemon(e.target.innerText);
-}
-  })
-
-  //get the all pokemon names that shares the same data the user clicked
-  const openList = async (pokemonName, node) => {
-    console.log(pokemonName);
-      await fetch
-      (`http://pokeapi.co/api/v2/type/${pokemonName}`)
-      .then(res => res.json())
-      .then(data => 
-        showBrothers(data, node)) 
-      .catch(error => {
-        console.log(error.message);
-        document.getElementById("error").innerHTML = "<p>Type not found</p>"
-        setTimeout(() => {
-          document.getElementById("error").innerHTML = '';
-      }, 3000);
-      });
   }
-    
+});
+
+//get the all pokemon names that shares the same data the user clicked
+const openList = async (pokemonName, node) => {
+  await fetch(`http://pokeapi.co/api/v2/type/${pokemonName}`)
+    .then((res) => res.json())
+    .then((data) => showBrothers(data, node))
+    .catch((error) => {
+      console.log(error.message);
+      document.getElementById("error").innerHTML = "<p>Type not found</p>";
+      setTimeout(() => {
+        document.getElementById("error").innerHTML = "";
+      }, 3000);
+    });
+};
+
 //show all the pokemons that have the same data
 const showBrothers = (data, node) => {
-  console.log(data.pokemon)
   let brothersRapper = document.createElement("div");
   brothersRapper.classList.add("brothersRapper");
   node.appendChild(brothersRapper);
-  let names = data.pokemon
+  let names = data.pokemon;
   let pokNames = "";
-  names.forEach(i => {
-    console.log(i)
-    pokNames += `<a id="brotherName" href="#">${i.pokemon.name}  </a>`
+  names.forEach((i) => {
+    pokNames += `<a id="brotherName" href="#">${i.pokemon.name}</a>&nbsp;&nbsp;`;
   });
-  brothersRapper.innerHTML = `<div id="brothersList">Pokemon Brothers: ${pokNames}</div> `
+  brothersRapper.innerHTML = `<div id="brothersList">
+  <p>Pokemon Brothers: </p>
+  <div class="container" id="broNameCon">${pokNames}</div>
+  <button id="closeBtn">close</button>
+  </div> `;
+  document.addEventListener("click" , (e) => {
+   if (e.target.id === "closeBtn") {
+    brothersRapper.innerHTML = "";
+  } 
+  })
 };
