@@ -7,6 +7,7 @@ let pokemonId;
 button.addEventListener("click", (e) => {
   if (input.value) {
     myPokemonId = input.value;
+    input.value = "";
     searchPokemon(myPokemonId);
   }
 });
@@ -15,6 +16,7 @@ button.addEventListener("click", (e) => {
 input.addEventListener("keyup", (e) => {
   if (e.keyCode === 13) {
     myPokemonId = input.value;
+    input.value = "";
     searchPokemon(myPokemonId);
   }
 });
@@ -52,7 +54,8 @@ const makePok = (data) => {
   <div class="types">types: ${pokType}</div> 
   <div id="imgWrapper">Pokemon Image: <br> <img id="pokImg" src="${data.sprites.front_default}"
   onmouseover="this.src='${data.sprites.back_default}';"
-  onmouseout="this.src='${data.sprites.front_default}';"/></div>`;
+  onmouseout="this.src='${data.sprites.front_default}';"/></div>
+  <button id="delBtn">Delete Pokemon</button>`;
 };
 
 document.addEventListener("click", (e) => {
@@ -64,11 +67,19 @@ document.addEventListener("click", (e) => {
   //add event listener to the pokemons the shares the same type
   if (e.target.id === "brotherName") {
     searchPokemon(e.target.innerText);
+    e.target.parentElement.parentElement.innerHTML = "";
+  }
+  console.log(e.target.id);
+  if (e.target.id === "delBtn") {
+
+    let parent = document.getElementById("delBtn").parentElement
+    parent.parentElement.removeChild(parent) 
   }
 });
 
 //get the all pokemon names that shares the same data the user clicked
 const openList = async (pokemonName, node) => {
+
   await fetch(`http://pokeapi.co/api/v2/type/${pokemonName}`)
     .then((res) => res.json())
     .then((data) => showBrothers(data, node))
@@ -93,7 +104,7 @@ const showBrothers = (data, node) => {
   });
   brothersRapper.innerHTML = `<div id="brothersList">
   <p>Pokemon Brothers: </p>
-  <div class="container" id="broNameCon">${pokNames}</div>
+  <ul class="container" id="broNameCon">${pokNames}</ul>
   <button id="closeBtn">close</button>
   </div> `;
   document.addEventListener("click" , (e) => {

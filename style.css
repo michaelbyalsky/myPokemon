@@ -2,6 +2,7 @@ body {
     font-family: "Rubik", sans-serif;
   background-color: #128cfc;
   margin-top: 5%;
+  background-image: url(https://www.pngkit.com/png/full/30-301694_view-fullsize-pokmon.png);
   }
   
   @media (min-width: 1000px) {
@@ -49,7 +50,7 @@ body {
     display: grid;
     place-items: center;
     background-color: whitesmoke;
-    border-top: 10px solid blue;
+    border-top: 10px solid red;
   }
   
   #controlSection {
@@ -172,6 +173,6 @@ body {
   
 
   #broNameCon {
-    display: grid;
-    grid-template-columns: auto;
+    word-break: break-all;
+    width:500px;
   }
