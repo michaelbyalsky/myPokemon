@@ -104,7 +104,7 @@ const showBrothers = (data, node) => {
   });
   brothersRapper.innerHTML = `<div id="brothersList">
   <p>Pokemon Brothers: </p>
-  <ul class="container" id="broNameCon">${pokNames}</ul>
+  <div class="container" id="broNameCon">${pokNames}</div>
   <button id="closeBtn">close</button>
   </div> `;
   document.addEventListener("click" , (e) => {
