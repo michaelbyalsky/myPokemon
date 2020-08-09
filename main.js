@@ -100,11 +100,11 @@ const showBrothers = (data, node) => {
   let names = data.pokemon;
   let pokNames = "";
   names.forEach((i) => {
-    pokNames += `<a id="brotherName" href="#">${i.pokemon.name}</a>&nbsp;&nbsp;`;
+    pokNames += `<li><a id="brotherName" href="#">${i.pokemon.name}</a></li>`;
   });
   brothersRapper.innerHTML = `<div id="brothersList">
   <p>Pokemon Brothers: </p>
-  <div class="container" id="broNameCon">${pokNames}</div>
+  <ul class="container" id="broNameCon">${pokNames}</ul>
   <button id="closeBtn">close</button>
   </div> `;
   document.addEventListener("click" , (e) => {

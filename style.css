@@ -8,7 +8,6 @@ body {
   @media (min-width: 1000px) {
     body {
       font-family: "Rubik", sans-serif;
-    background-color: #128cfc;
     margin-top: 5%;
     margin-left: 20%;
     margin-right: 20%;
@@ -56,23 +55,22 @@ body {
   #controlSection {
     display: grid;
     grid-template-columns: repeat(3, 0.7fr);
+    height: 3rem;
   }
 
   #search {
     border: 2px solid skyblue;
     font-size: 1em;
-    padding: 0.25em 0.5em 0.3125em;
     color: black;
     border-radius: 0.25em;
     transition: all 0.1s;
+    margin-right: 1rem;
   }
   
   #searchButton {
-    outline: none;
     color: black;
     border-color: skyblue;
     font-size: 1em;
-    padding: 0.25em 0.5em 0.3125em;
     color: black;
     border-radius: 0.25em;
     transition: all 0.1s;
@@ -90,8 +88,6 @@ body {
   .pokRapper {
     padding: 10px;
     padding-right: 0px;
-    display: grid;
-    grid-template-rows: repeat(6, 0.1fr);
     border: 1px solid transparent;
     color: rgb(4, 5, 7);
     font-weight: bolder;
@@ -140,6 +136,7 @@ body {
 
 
  #broNameCon {
+   position: relative;
     word-break: break-all;
     width:500px;
     word-wrap: break-word;
